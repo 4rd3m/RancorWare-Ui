@@ -1,4 +1,5 @@
 --[[
+   
 
     Assign different flags to each element to prevent from configs overriding eachother
     Example script is at the bottom
@@ -1455,10 +1456,10 @@ local Library do
                         Size = UDim2New(1, 0, 1, 0),
                         Position = UDim2New(0, 0, 0, 0),
                         Image = "rbxassetid://5346850172",
-                        ImageTransparency = 0.85,
+                        ImageTransparency = 0.4,
                         ScaleType = Enum.ScaleType.Tile,
                         TileSize = UDim2New(0, 256, 0, 256),
-                        ZIndex = 0
+                        ZIndex = 1
                     })
                 else
                     Items["Outline"] = Instances:Create("TextButton", {
