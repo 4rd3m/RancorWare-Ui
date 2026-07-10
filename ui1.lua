@@ -647,6 +647,28 @@ local Library do
                 Visible = true,
             })
 
+    function Library:SetBackgroundImage(ID)
+        local Holder = Library.Holder
+        if Holder then
+            for _, obj in ipairs(Holder.Instance:GetDescendants()) do
+                if obj:IsA("ImageLabel") and (obj.Name == "Window_Texture" or obj.Name == "Section_Texture") then
+                    obj.Image = "rbxassetid://" .. tostring(ID)
+                end
+            end
+        end
+    end
+
+    function Library:SetBackgroundTransparency(Value)
+        local Holder = Library.Holder
+        if Holder then
+            for _, obj in ipairs(Holder.Instance:GetDescendants()) do
+                if obj:IsA("ImageLabel") and (obj.Name == "Window_Texture" or obj.Name == "Section_Texture") then
+                    obj.ImageTransparency = Value
+                end
+            end
+        end
+    end
+
             local TooltipText = Instances:Create("TextLabel", {
                 Parent = Tooltip.Instance,
                 BackgroundColor3 = FromRGB(0, 0, 0),
@@ -4289,7 +4311,7 @@ local Library do
                     UIGradient.Instance.Offset = Vector2New(GradientOffset, 0)   
                 end)
             else
-                Items["Text"]:AddToTheme({TextColor3 = "Text"})
+                Items["Text"]:AddToTheme({TextColor3 = "Accent"})
             end
 
             Items["Pages"] = Instances:Create("Frame", {
