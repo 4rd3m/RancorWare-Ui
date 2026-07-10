@@ -1,7 +1,4 @@
--- REASON: Discontinued nobody wanted to buy it either... I can see why vaderhaxx was super ugly lol 
--- Code from around october of 2024
 
--- Variables 
     local uis = game:GetService("UserInputService") 
     local players = game:GetService("Players") 
     local ws = game:GetService("Workspace")
@@ -83,16 +80,16 @@
 
     local themes = {
         preset = {
-            accent = rgb(255, 200, 69),
+            accent = rgb(102, 51, 153),
             text = rgb(255, 255, 255),
             text_outline = rgb(0, 0, 0),
             a = Color3.fromRGB(0, 0, 0),
-            b = Color3.fromRGB(56, 56, 56),
-            c = Color3.fromRGB(46, 46, 46),
-            d = Color3.fromRGB(12, 12, 12),
-            e = Color3.fromRGB(21, 21, 21),
-            f = Color3.fromRGB(84, 84, 84),
-            g = Color3.fromRGB(54, 54, 54),
+            b = Color3.fromRGB(30, 20, 40),
+            c = Color3.fromRGB(20, 15, 30),
+            d = Color3.fromRGB(10, 8, 15),
+            e = Color3.fromRGB(15, 12, 22),
+            f = Color3.fromRGB(50, 35, 65),
+            g = Color3.fromRGB(35, 25, 45),
         },
 
         utility = {
@@ -594,6 +591,18 @@
                     BorderSizePixel = 0;
                     BackgroundColor3 = rgb(0, 0, 0)
                 });	library:apply_theme(a, "a", "BackgroundColor3")
+                
+                local window_bg_image = library:create("ImageLabel", {
+                    Parent = a;
+                    BackgroundTransparency = 1;
+                    Size = dim2(1, 0, 1, 0);
+                    Position = dim2(0, 0, 0, 0);
+                    Image = "rbxassetid://5346850172";
+                    ImageTransparency = 0.85;
+                    ScaleType = Enum.ScaleType.Tile;
+                    TileSize = dim2(0, 256, 0, 256);
+                    ZIndex = 0;
+                })
                 
                 local tab_holder = library:create("Frame", {
                     Parent = a;
