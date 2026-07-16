@@ -906,7 +906,15 @@ local Library do
 
         for Property, Value in ThemeData.Properties do
             if type(Value) == "string" then
-                Item[Property] = self.Theme[Value]
+                if Item:IsA("UIGradient") and Property == "Color" then
+                    Item.Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+                        ColorSequenceKeypoint.new(0.5, self.Theme[Value]),
+                        ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+                    })
+                else
+                    Item[Property] = self.Theme[Value]
+                end
             else
                 Item[Property] = Value
             end
@@ -1099,7 +1107,7 @@ local Library do
             for Property, Value in Item.Properties do
                 if type(Value) == "string" and Value == Theme then
                     if Item.Item:IsA("UIGradient") and Property == "Color" then
-                        Item.Item[Property] = ColorSequence.new({
+                        Item.Item.Color = ColorSequence.new({
                             ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
                             ColorSequenceKeypoint.new(0.5, Color),
                             ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
