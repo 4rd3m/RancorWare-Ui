@@ -674,19 +674,16 @@ local Library do
         local Holder = Library.Holder
         if Holder then
             local trans = Enabled and 0.25 or 0
-            for _, obj in ipairs(Holder.Instance:GetDescendants()) do
-                if obj:IsA("GuiObject") and obj.Name ~= "Window_Texture" and obj.Name ~= "Section_Texture" and obj.BackgroundTransparency < 0.9 then
-                    if Library and Library.Theme then
-                        local c = obj.BackgroundColor3
-                        if c == Library.Theme["Window Background"] or c == Library.Theme["Inline"] or c == Library.Theme["Section Background"] or c == Library.Theme["Dark Liner"] then
-                            obj.BackgroundTransparency = trans
+            for _, Item in pairs(Library.ThemeItems) do
+                for Property, Value in pairs(Item.Properties) do
+                    if Property == "BackgroundColor3" then
+                        if Value == "Window Background" or Value == "Inline" or Value == "Section Background" or Value == "Dark Liner" then
+                            if Item.Item and typeof(Item.Item) == "Instance" and Item.Item.Name ~= "Window_Texture" then
+                                Item.Item.BackgroundTransparency = trans
+                            end
                         end
                     end
                 end
-            end
-            -- Apply to Window Outline as well
-            if Holder.Instance:FindFirstChild("\0") then
-                Holder.Instance:FindFirstChild("\0").BackgroundTransparency = trans
             end
         end
     end
@@ -1555,7 +1552,7 @@ local Library do
                 })  Items["Inline"]:AddToTheme({BackgroundColor3 = "Inline", BorderColor3 = "Border"})
 
                 Items["Window_Texture"] = Instances:Create("ImageLabel", {
-                    Parent = Items["Inline"].Instance,
+                    Parent = Items["Outline"].Instance,
                     BackgroundTransparency = 1,
                     Size = UDim2New(1, 0, 1, 0),
                     Position = UDim2New(0, 0, 0, 0),
